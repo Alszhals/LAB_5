@@ -1,5 +1,7 @@
 import java.util.Iterator;
 import java.util.Stack;
+import java.lang.Object;
+
 
 
 public class BST<K extends Comparable<K>, V> implements Iterable<K> {
@@ -136,4 +138,19 @@ public class BST<K extends Comparable<K>, V> implements Iterable<K> {
             return node.key;
         }
     }
+    public boolean consist(K key){
+        return findconsist(root, key) != null;
+    }
+    private Node<K,V> findconsist(Node node,K key) {
+        if (node == null || key.compareTo((K) node.key) == 0) {
+            return node;
+        }
+        if (key.compareTo((K) node.key) < 0) {
+            return findconsist(node.left, key);
+        } else {
+            return findconsist(node.right, key);
+        }
+    }
+
+
 }
